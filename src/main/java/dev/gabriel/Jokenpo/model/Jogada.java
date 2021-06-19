@@ -2,13 +2,39 @@ package dev.gabriel.Jokenpo.model;
 
 public class Jogada {
 
-    private TipoJogada tipoJogada;
+    private TipoJogada jogadaJogador;
+    private TipoJogada jogadaMaquina;
+    private Resultado resultado;
 
-    public TipoJogada getTipoJogada() {
-        return tipoJogada;
+    public Jogada(TipoJogada jogadaJogador, TipoJogada jogadaMaquina, Resultado resultado) {
+        this.jogadaJogador = jogadaJogador;
+        this.jogadaMaquina = jogadaMaquina;
+        this.resultado = resultado;
     }
 
-    public void setTipoJogada(TipoJogada tipoJogada) {
-        this.tipoJogada = tipoJogada;
+    public Jogada(){}
+
+    public TipoJogada getJogadaJogador() {
+        return jogadaJogador;
+    }
+
+    public void setJogadaJogador(TipoJogada jogadaJogador) {
+        this.jogadaJogador = jogadaJogador;
+    }
+
+    public TipoJogada getJogadaMaquina() {
+        return jogadaMaquina;
+    }
+
+    public void setJogadaMaquina(TipoJogada jogadaMaquina) {
+        this.jogadaMaquina = jogadaMaquina;
+    }
+
+    public Resultado getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(Resultado resultado) {
+        this.resultado = resultado;
     }
 }

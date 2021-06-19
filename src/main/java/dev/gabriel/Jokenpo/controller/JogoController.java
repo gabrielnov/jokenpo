@@ -1,6 +1,7 @@
 package dev.gabriel.Jokenpo.controller;
 
 import dev.gabriel.Jokenpo.model.Jogada;
+import dev.gabriel.Jokenpo.model.TipoJogada;
 import dev.gabriel.Jokenpo.service.JogoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ public class JogoController {
 
     @GetMapping("/novo")
     public String novoJogo(Model model){
-        System.out.print("!!!!!!!!!!!!!!!  executando método /novo !!!!!!!!!!!!!!!!!!!!\n");
+        System.out.println("!!!!!!!!!!!!!!!  executando método /novo !!!!!!!!!!!!!!!!!!!!");
 
         model.addAttribute("jogada", new Jogada());
         return "jogo";
@@ -27,10 +28,11 @@ public class JogoController {
     @PostMapping("/novaJogada")
     public String novaJogada(@ModelAttribute Jogada jogada, Model model){
 
-        System.out.print("executando método /novaJogada \n");
-        jogoService.novaJogada(jogada);
+        System.out.println("executando método /novaJogada ");
 
-        model.addAttribute("jogada", jogada);
+        Jogada jogadaResultado = jogoService.novaJogada(jogada);
+
+        model.addAttribute("jogadaResultado", jogadaResultado);
         return "jogo";
     }
 

@@ -7,17 +7,34 @@
 </head>
 
 <body>
-    <h1>Form</h1>
-    <form th:action="@{/jogo/novaJogada}" th:object="${jogada}" method="post">
 
-        <div th:each="jog : ${T(dev.gabriel.Jokenpo.model.TipoJogada).values()}">
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" th:field="*{tipoJogada}" th:value="${jog}" class="custom-control-input">
-                <label class="custom-control-label" th:for="${#ids.prev('tipoJogada')}" th:text="${jog}">model</label>
+    <div class="card text-center mx-auto mt-4" style="width: 30rem;">
+
+        <h1>Jokenpô</h1>
+        <div class="card-body">
+            <form th:action="@{/jogo/novaJogada}" th:object="${jogada}" method="post">
+
+                <div th:each="jog : ${T(dev.gabriel.Jokenpo.model.TipoJogada).values()}">
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" th:field="*{jogadaJogador}" th:value="${jog}"
+                               class="custom-control-input">
+                        <label class="custom-control-label"
+                               th:for="${#ids.prev('jogadaJogador')}" th:text="${jog}"/>
+                    </div>
+
+                </div>
+                <input class="mt-3 btn btn-primary" type="submit" />
+            </form>
+
+            <div th:each="jog : ${jogadaResultado}">
+                <p> Sua jogada: <a th:text="${jog.jogadaJogador}" /></p>
+                <p> Jogada da máquina: <a th:text="${jog.jogadaMaquina}" /></p>
+                <p> Resultado: <a th:text="${jog.resultado}" /></p>
             </div>
         </div>
-        <input type="submit" />
-    </form>
+
+    </div>
 
 </body>
 </html>
