@@ -1,8 +1,8 @@
 package dev.gabriel.Jokenpo.service;
 
-import dev.gabriel.Jokenpo.model.Jogada;
-import dev.gabriel.Jokenpo.model.Resultado;
-import dev.gabriel.Jokenpo.model.TipoJogada;
+import dev.gabriel.Jokenpo.model.*;
+import dev.gabriel.Jokenpo.repository.PartidaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,41 +10,30 @@ import java.util.ArrayList;
 @Service
 public class JogoService {
 
-    ArrayList<Jogada> listaJogadas = new ArrayList<>();
+    Jogador jogador = new Jogador();
+    public void novoJogo(Jogador jogadorRecebido) {
+        jogador.setNomeJogador(jogadorRecebido.getNomeJogador());
+    }
 
-    // TODO só to usando um atributo da Jogada, talvez passar só ele?
-    public Jogada novaJogada(Jogada novaJogada) {
-        TipoJogada jogadaMaquina;
-        TipoJogada jogadaJogador;
-        Resultado resultado;
+    ArrayList<Jogada> listaDeJogadas = new ArrayList<>();
 
-        jogadaMaquina = TipoJogada.getNovaJogada();
-        jogadaJogador = novaJogada.getJogadaJogador();
-        resultado = jogadorVenceu(jogadaJogador, jogadaMaquina);
+    public Jogada novaJogada(TipoJogada jogadaJogador) {
 
-        // TODO renomear essa instancia
+        TipoJogada jogadaMaquina = TipoJogada.getNovaJogada();
+        Resultado resultado = Resultado.quemVenceu(jogadaJogador, jogadaMaquina);
+
         Jogada jogadaResultado = new Jogada(jogadaJogador, jogadaMaquina, resultado);
-        listaJogadas.add(jogadaResultado);
+        listaDeJogadas.add(jogadaResultado);
+
         return jogadaResultado;
     }
 
-    // TODO extrair para uma classe?
-    public Resultado jogadorVenceu(TipoJogada jogadaJogador, TipoJogada jogadaMaquina){
+    @Autowired
+    PartidaRepository partidaRepository;
 
-        if((jogadaJogador == TipoJogada.PEDRA) && (jogadaMaquina == TipoJogada.TESOURA)){
-            return Resultado.JOGADOR;
-        }
-        if((jogadaJogador == TipoJogada.TESOURA) && (jogadaMaquina == TipoJogada.PAPEL)){
-            return Resultado.JOGADOR;
-        }
-        if((jogadaJogador == TipoJogada.PAPEL) && (jogadaMaquina == TipoJogada.PEDRA)){
-            return Resultado.JOGADOR;
-        }
-        if((jogadaJogador == jogadaMaquina)){ // TODO colocar em primeiro
-            return Resultado.EMPATE;
-        }
-
-        return Resultado.MAQUINA;
-
+    public void salvarJogo(Resultado resultado, Jogador jogador){
+        String nomeJogador = jogador.getNomeJogador();
+        Partida partida = new Partida(resultado, nomeJogador);
+        partidaRepository.save(partida);
     }
 }

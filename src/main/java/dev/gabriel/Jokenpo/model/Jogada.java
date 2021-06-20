@@ -5,6 +5,7 @@ public class Jogada {
     private TipoJogada jogadaJogador;
     private TipoJogada jogadaMaquina;
     private Resultado resultado;
+    private Jogador jogador;
 
     public Jogada(TipoJogada jogadaJogador, TipoJogada jogadaMaquina, Resultado resultado) {
         this.jogadaJogador = jogadaJogador;
@@ -36,5 +37,13 @@ public class Jogada {
 
     public void setResultado(Resultado resultado) {
         this.resultado = resultado;
+    }
+
+    public Jogador getJogador() {
+        return jogador;
+    }
+
+    public void setJogador(Jogador jogador) {
+        this.jogador = jogador;
     }
 }
