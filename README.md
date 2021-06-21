@@ -1,5 +1,9 @@
 # JOKENPÔ!
 
+### Sobre o projeto
+
+Foram utilizadas as ferramentas do Spring e do Thymeleaf. Busquei ao máximo evitar expor regras de negócio na camada de View (o número de rodadas antes do resultado ser exibido,  por exemplo). Além disso, busquei reduzir ao máximo o número de requisições feitas ao Backend. Possíveis melhorias no Frontend podem vir através da conversão para uma SPA. Além disso, seria interessante a exibição das últimas partidas em uma espécie de ranking.
+
 ### Siga os passos para rodar o programa: 
 
 <ol>
