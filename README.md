@@ -26,6 +26,12 @@ Foram utilizadas as ferramentas do Spring e do Thymeleaf. Busquei ao máximo evi
   ``` src/main/java/dev/gabriel/Jokenpo/JokenpoApplication.java ```
   
 </li>
+  
+  <li> No navegador, abra a página  
+    
+   ``` localhost:8080/home ```
+    
+  </li>
 
 </ol>
 
